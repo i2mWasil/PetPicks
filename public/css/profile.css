@@ -1,0 +1,100 @@
+
+/* General styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+}
+
+
+
+
+/*HEADER BAR*/
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url(../images/headerbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+    z-index: 999; /* Increase z-index to keep header on top */
+}
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-icon img {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px; /* Adjust top margin as needed */
+}
+
+.petpicks {
+    display: flex;
+    margin-right: auto;
+}
+
+.petpicks pre {
+    font-family: 'Arial', sans-serif; /* Change the font if needed */
+    font-size: 30px;
+    text-align: center;
+    color: rgb(225, 137, 29);
+    margin: 0;
+}
+
+.petpicks pre:first-child {
+    color: rgb(225, 137, 29); /* Change the color of the first pre element */
+}
+
+
+
+
+
+
+
+  
+ /* Profile Container */
+.profile-container {
+    top: 50%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+
+/* Profile Details */
+.profile-details {
+    display: block;
+    align-items: center;
+}
+
+/* Profile Image */
+#profile-image {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it round */
+    margin-right: 20px;
+}
+
+/* Username */
+#username {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Email */
+#email {
+    color: #666;
+}

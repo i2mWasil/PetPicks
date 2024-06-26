@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPicks - Rabbits</title>
+    <link rel="icon" href="../public/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/shopping.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+
+
+
+    /* Style the form container */
+    .form-container {
+        margin-bottom: 20px; /* Add margin at the bottom to create space between the form and trending container */
+    }
+
+    /* Style the select dropdown */
+    #sortBy {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f8f8f8;
+        cursor: pointer;
+    }
+
+    /* Style the options in the dropdown */
+    #sortBy option {
+        padding: 10px;
+    }
+
+    /* Style the selected option */
+    #sortBy option:checked {
+        background-color: #e0e0e0;
+    }
+
+    
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/7dcdc12078.js" crossorigin="anonymous"></script>
+    
+
+    <!--HEADER BAR-->
+    <!--Logo / Search / User-->
+    <header>
+        <div class="top-menu">
+            <div class="logo-icon">
+                <img src="../public/images/logo.png" alt="logo">
+            </div>
+            <div class="petpicks">
+                <pre>𝑷𝒆𝒕</pre><pre style="color: rgb(255, 255, 255);">𝑷𝒊𝒄𝒌𝒔</pre>
+            </div>
+            <div class="user">
+                <i><pre id="username-placeholder" style="color: white;">𝗨𝘀𝗲𝗿</pre></i><!--username-placeholder change kiya-->
+            </div>
+            <div class="dropdown">  
+                <button id="profile-button" class="user-icon-btn">
+                    <img id="profile-image" src="" alt="Profile">
+                    
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+
+
+
+
+        <!--Home / Categories / Post / Inbox / Messages-->
+        <div class="nav-container" id="navContainer">
+            <div class="nav-menu">
+                <div class="categories">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div id="upload-btn" class="upload-btn"> <!--nav-semicircle-->
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="log-out">
+                    <button>
+                        <i class="fa-solid fa-power-off"></i>
+                    </button>
+                </div>
+    
+            </div>
+        </div>
+    
+
+
+
+
+        <br><br>
+
+    <!-- Shopping items section -->
+     <!--TRENDING PAGE-->
+    <section class="trending-container" style="margin-top: -110px;">
+        <form class="form-container" style="margin-top: 50px; margin-bottom: 0px; margin-left: 10px;">
+            <select id="sortBy" name="sortBy" required onchange="handleSortChange()">Sort By
+                <option value="trending">Popularity</option>
+                <option value="priceDesc">Price: High to Low</option>
+                <option value="priceAsc">Price: Low to High</option>
+            </select>
+        </form>
+        <div class="trending-wrapper">
+            <div class="trending-slide">
+            </div>
+            <div class="trending-nav">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
+            </div>
+            
+        </div>
+        <div class="trending-pagination"></div>
+    </section>
+
+    
+
+    <script>
+               document.addEventListener('DOMContentLoaded', function() {
+            // Fetch and display trending images initially
+            fetchAndDisplayTrendingImages('rabbit');
+
+            // Add event listener for the sort dropdown
+            const sortDropdown = document.getElementById('sortBy');
+            sortDropdown.addEventListener('change', function() {
+                const sortBy = this.value; // Get the selected value from the dropdown
+                sortTrendingImages(sortBy); // Call sortTrendingImages with the selected value
+            });
+        });
+
+
+
+
+
+        // Function to handle sort change
+        function handleSortChange() {
+            const sortBy = document.getElementById('sortBy').value;
+            fetchAndDisplayTrendingImages('rabbit', sortBy);
+        }
+
+        // Function to fetch and display trending images with sorting
+        async function fetchAndDisplayTrendingImages(category, sortBy) {
+            try {
+                const response = await fetch(`/trendingimages/${category}?sortBy=${sortBy}`);
+                const trendingImages = await response.json();
+                // Display trending images
+                displayTrendingImages(trendingImages);
+            } catch (error) {
+                console.error(`Error fetching and displaying trending images for ${category}:`, error);
+           }
+        }
+
+        // Function to handle image click event
+        function handleImageClick(itemId) {
+            window.location.href = `../template/details.html?id=${itemId}`;
+        }
+
+
+        // Function to display trending images
+        function displayTrendingImages(trendingImages) {
+            const slideContainer = document.querySelector('.trending-slide');
+            slideContainer.innerHTML = ''; // Clear previous images
+            trendingImages.forEach(({ imageUrl, _id }, index) => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Trending ${index + 1}`;
+                img.id = `slide-${index + 1}`;
+                img.dataset.itemId = _id.toString();
+                img.addEventListener('click', async () => {
+                    const itemId = img.dataset.itemId; // Retrieve itemId from dataset
+                    console.log('Clicked item ID:', itemId);
+                    await incrementClickCounter(itemId);
+                     
+                    try {
+                        // Fetch details of the selected item from the server
+                        const response = await fetch(`/shoppingitems/${itemId}`);
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch item details');
+                        }
+                        // Redirect to the details page after fetching item details
+                        window.location.href = `details.html?id=${itemId}`;
+                    } catch (error) {
+                        console.error('Error fetching item details:', error);
+                    }
+                });
+                slideContainer.appendChild(img);
+            });     
+        }
+
+
+
+
+
+
+
+
+        async function sortTrendingImages(sortBy) {
+            try {
+                let category = 'rabbit';
+
+                // Fetch trending images for the specified category from the server
+                const response = await fetch(`/trendingimages/${category}?sortBy=${sortBy}`);
+                const trendingImages = await response.json();
+
+                // Display sorted trending images
+                fetchAndDisplayTrendingImages(trendingImages);
+            } catch (error) {
+                console.error(`Error sorting trending images by ${sortBy}:`, error);
+            }
+        }
+
+        // Function to increment the click counter for an item
+        async function incrementClickCounter(itemId) {
+    try {
+        if (!itemId) {
+            console.error('Error incrementing click counter: Item ID is undefined');
+            return;
+        }
+
+        const response = await fetch(`/incrementclicks/${itemId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            console.log('Click counter incremented successfully');
+        } else {
+            console.error('Failed to increment click counter');
+        }
+    } catch (error) {
+        console.error('Error incrementing click counter:', error.message);
+    }
+}
+
+
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let scrollContainer = document.querySelector('.category');
+            let slides = document.querySelectorAll('.category > div');
+            let backBtn = document.getElementById('backBtn');
+            let frontBtn = document.getElementById('frontBtn');
+
+            // Smooth scrolling animation
+            function scrollSmoothly(distance) {
+                scrollContainer.scrollTo({
+                    left: scrollContainer.scrollLeft + distance,
+                    behavior: 'smooth'
+                });
+            }
+
+        // Calculate slide width
+        let slideWidth = slides[0].offsetWidth;
+
+        // Add event listener for front button
+            frontBtn.addEventListener("click", () => {
+            scrollSmoothly(slideWidth);
+        });
+
+    // Add event listener for back button
+    backBtn.addEventListener("click", () => {
+        scrollSmoothly(-slideWidth);
+    });
+
+    // Hide back button initially
+    if (scrollContainer.scrollLeft === 0) {
+        backBtn.style.visibility = 'hidden';
+    }
+
+    // Hide buttons when scrolling reaches the edges
+    scrollContainer.addEventListener('scroll', () => {
+        let maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        if (scrollContainer.scrollLeft === 0) {
+            backBtn.style.visibility = 'hidden';
+        } else if (scrollContainer.scrollLeft >= maxScrollLeft) {
+            frontBtn.style.visibility = 'hidden';
+        } else {
+            backBtn.style.visibility = 'visible';
+            frontBtn.style.visibility = 'visible';
+        }
+    });
+});
+
+
+
+
+// Inside fetchAndDisplayShoppingItems function
+// Create a button element for renting the item
+const rentButton = document.createElement('button');
+rentButton.textContent = 'Rent';
+rentButton.classList.add('rent-button'); // Add class to rent button
+rentButton.addEventListener('click', () => rentItem(item._id)); // Pass the item ID to the rentItem function
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    Promise.all([fetchUserData()])
+        .then(([userData]) => {
+            // Update username
+            if (userData && userData.username) {
+                document.getElementById('username-placeholder').textContent = userData.username;
+            }
+            // Update profile image
+            if (userData && userData.profileImage) {
+                document.getElementById('profile-image').src = userData.profileImage;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error.message);
+        });
+});
+
+async function fetchUserData() {
+    try {
+        const response = await fetch('/getUserData');
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data. Status: ' + response.status);
+        }
+        return await response.json();
+    } catch (error) {
+        throw new Error('Error fetching user data: ' + error.message);
+    }
+}
+
+
+
+
+
+    // Function to redirect to the login page
+    function redirectToLogin() {
+        window.location.href = '/login'; // Change '/login' to the actual login page URL
+    }
+
+    // Check if the userId cookie exists
+    const userId = getCookie('userId');
+    if (!userId) {
+        // If the userId cookie doesn't exist, show the User icon
+        const userDropdown = document.getElementById('userDropdown');
+        userDropdown.innerHTML = '<button id="profile-button" class="user-icon-btn" onclick="redirectToLogin()">User</button>';
+    }
+
+    // Function to get the value of a cookie by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+
+
+
+
+   
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the logo icon element
+        var logoIcon = document.querySelector('.logo-icon');
+
+        // Add click event listener to the logo icon
+        logoIcon.addEventListener('click', function () {
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        });
+    });
+
+
+
+
+
+
+    </script>
+
+    <script src="../src/script.js"></script>
+
+</body>
+</html>

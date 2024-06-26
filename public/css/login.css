@@ -1,0 +1,398 @@
+
+
+
+
+
+/* General styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    background-image: url(../images/loginbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+
+
+@font-face {
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-icon img {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px; /* Adjust top margin as needed */
+}
+
+.petpicks {
+    display: flex;
+    margin-right: auto;
+}
+
+.petpicks pre {
+    font-family: 'Arial', sans-serif; /* Change the font if needed */
+    font-size: 30px;
+    text-align: center;
+    color: rgb(225, 137, 29);
+    margin: 0;
+}
+
+.petpicks pre:first-child {
+    color: rgb(225, 137, 29); /* Change the color of the first pre element */
+}
+
+
+
+
+
+
+.user {
+    display: flex;
+    margin-left: auto;
+}
+
+.user pre {
+    font-family: 'Arial', sans-serif; /* Change the font if needed */
+    font-size: 30px;
+    padding: 15px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+.user-icon-btn{
+    margin-right: 60px;
+    background-color: transparent;
+    width: 75px; /* Adjust width as needed */
+    height: 75px; /* Adjust height as needed */
+    border-radius: 50%; /* Make it circular */
+    background-color: #6e88c4; /* Example background color */
+    color: #fff; /* Example text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add pointer cursor */
+}
+
+
+.fa-user {
+    position: relative; /* Set position to relative */
+    right: 6px; /* Adjust top position as needed */
+    bottom: 4px; /* Adjust left position as needed */
+    font-size: 40px; /* Adjust icon size as needed */
+    color: #000000; /* Change the color as needed */
+    cursor: pointer; /* Add pointer cursor */
+    margin: 20px;   
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Login/Signup box */
+
+
+.login-container {
+    position: relative;
+    top: 77px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Decreased height */
+    bottom: 50px; /* Added margin to the bottom */
+}
+
+.login-container h1{
+    font-family: "San Francisco", sans-serif;
+    color: #343434;
+    margin-bottom: -5px;
+}
+
+
+.logo-container {
+    margin-bottom: 20px; /* Add some space below the logo */
+}
+
+.logo-image {
+    width: 400px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.petpicks-login{
+    display: flex;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: -35px;
+}
+
+.petpicks-login pre {
+    font-size: 30px;
+    text-align: center;
+    color: rgb(225, 137, 29);   
+}
+
+.petpicks-login pre:first-child {
+    color: rgb(225, 137, 29); /* Change the color of the first pre element */
+}
+
+.login-form {
+    /* Your existing styles */
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto; /* Center the form horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.login-form {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the opacity as needed */
+    margin-bottom: -210px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px; /* Adjust width as needed */
+    width: 100%;
+}
+
+.login-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-form input[type="text"],.login-form input[type="email"], 
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    opacity: 70%;
+}
+
+
+
+
+
+
+
+
+
+
+/*Password toggling effect*/
+
+.password-container {
+    position: relative;
+    display: inline-block; /* Ensure the container only takes up the necessary space */
+    align-self: baseline;
+}
+
+.password {
+    width: 100%; /* Adjust the width to accommodate the eye icon */
+    padding: 10px;
+    margin-right: 247px;
+    margin-left: -10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(204, 204, 204);
+    opacity: 70%;
+
+}
+
+.eye-iconLogin {
+    position: absolute;
+    top: 40%;
+    right: 0%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    transition: color 0.3s ease;
+}
+
+.eye-iconLogin:hover {
+    color: rgb(174, 174, 174); /* Change to desired hover color */
+}
+
+
+.eye-iconSignup1 {
+    position: absolute;
+    top: 20%;
+    right: 0%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    transition: color 0.3s ease;
+}
+
+.eye-iconSignup1:hover {
+    color: rgb(174, 174, 174); /* Change to desired hover color */
+}
+
+
+.eye-iconSignup2 {
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    transition: color 0.3s ease;
+}
+
+.eye-iconSignup2:hover {
+    color: rgb(174, 174, 174); /* Change to desired hover color */
+}
+
+
+
+
+
+
+
+
+/*login and signup buttons*/
+
+.login-btn{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(110, 130, 196);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: rgb(53, 94, 196);
+}
+
+
+
+
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(110, 130, 196);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background-color: rgb(53, 94, 196);
+}
+
+.login-form p {
+    margin-top: 15px;
+}
+
+.login-form a {
+    color: #6e88c4;
+}
+
+
+
+
+
+
+
+
+/*Other social icons*/
+
+.alt-option{
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.google-btn{
+    background-color: rgb(219, 68, 55); 
+    color: white; 
+    height: 43px;
+    padding: 10px 15px; 
+    margin-right: 10px;
+    border: none; 
+    border-radius: 50%;
+}
+
+.google-btn:hover{
+    background-color: rgb(219, 30, 24); ;
+}
+
+
+
+.apple-btn{
+    background-color: rgb(249, 249, 249); 
+    height: 43px;
+    padding: 10px 15px; 
+    margin-right: 10px;
+    border: none; 
+    border-radius: 50%;
+}
+
+.apple-btn:hover{
+    background-color: rgb(216, 216, 216); ;
+}
+
+
+
+.meta-btn{
+    background-color: rgb(59, 89, 152);
+    height: 43px;
+    color: white; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 50%;
+}
+.meta-btn:hover{
+    background-color: rgb(20, 70, 152);
+}
+
+
+.fa-google{
+    font-size: 15px;
+}
+
+.fa-apple{
+    font-size: 18px;
+}
+
+.fa-meta{
+    font-size: 11px;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+
+

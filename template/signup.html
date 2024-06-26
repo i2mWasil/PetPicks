@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPicks</title>
+    <link rel="icon" href="../public/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/login.css">
+    <script src="https://kit.fontawesome.com/7dcdc12078.js" crossorigin="anonymous"></script>
+
+    <style>
+        .file-container {
+            display: flex;
+            align-items: center;
+        }
+        .file-containers {
+            display: flex;
+            align-items: center;
+        }
+            </style>
+
+</head>
+<body>
+
+
+
+<div class="login-container" >
+    <form class="login-form" style="margin-top: 100px;margin-bottom: 5px; " method="post" enctype="multipart/form-data" action="/signup">
+        <div class="logo-container">
+            <img src="../public/images/logo-login.png" alt="logo" class="logo-image">
+        </div>
+        <div class="petpicks-login">
+            <pre>𝑷𝒆𝒕</pre><pre style="color: black;">𝑷𝒊𝒄𝒌𝒔</pre>
+        </div>
+        <h1>Sign Up</h1><br/>
+        <input name="username" type="text" placeholder="Username" required>
+        <input name="email" type="email" placeholder="Email" required>
+        
+
+        <div class="password-container">
+            <input type="password" name="password" id="password" class="password" placeholder="Password" required>
+            <button class="eye-iconSignup1" id="togglePassword" type="button"><i class="fas fa-eye"></i></button> <!-- Eye icon button inside the input field -->
+            <input type="password" id="confirmPassword" name="confirmPassword" class="password" placeholder="Repeat Password" required>
+            <button class="eye-iconSignup2" id="togglePassword" type="button"><i class="fas fa-eye"></i></button> <!-- Eye icon button inside the input field -->
+        </div>
+
+        <div class="file-containers">
+            <p>PROFILE IMAGE:</hp><pre>  </pre><input type="file" id="profile-image" name="profile-image" accept="image/*" required>
+        </div>
+
+<div class="file-container">
+    <p>UPI QR CODE:</p><pre>  </pre><input type="file" id="upiQR" name="upiQR" accept="image/*" required>
+</div>
+
+<!--         <input type="hidden" name="login-redirect" value="login.html"> -->
+        <button name="submit" type="submit" class="signup-btn">Sign Up</button>
+    
+        <div>
+            <p style="margin-top: 10px;">Already have an account? <a id="loginLink" href="login.html" style="color: rgb(55, 55, 98);">Login</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    //validate password
+    function validateForm() {
+        const password = document.getElementsByName('password')[0].value;
+        const confirmPassword = document.getElementsByName('confirmPassword')[0].value;
+
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+            return false;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
+
+
+<script src="../src/script.js"></script>
+
+</body>
+</html>

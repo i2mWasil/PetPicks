@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPicks</title>
+    <link rel="icon" href="../public/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../public/css/login.css">
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/7dcdc12078.js" crossorigin="anonymous"></script>
+
+    
+
+    <div class="login-container">
+        <form class="login-form", method="post" action="/login">
+            <div class="logo-container"> <!-- Added container for logo -->
+                <img src="../public/images/logo-login.png" alt="logo" class="logo-image">
+            </div>
+            <div class="petpicks-login">
+                <pre>𝑷𝒆𝒕</pre><pre style="color: black;">𝑷𝒊𝒄𝒌𝒔</pre>
+            </div>
+            <h1>Login</h1><br/>
+            <input type="text" name="username" placeholder="Username" required>
+        
+            <div class="password-container">
+                <input type="password" name="password" id="passwordInput" class="password" placeholder="Password" required>
+                <button class="eye-iconLogin" id="togglePassword" type="button"><i class="fas fa-eye"></i></button> <!-- Eye icon button inside the input field -->
+            </div>
+          
+            <input type="hidden" name="index-redirect" value="index.html">
+            <button type="submit" class="login-btn">Login</button><br>
+            <a id="forgotLink" href="../template/forgot-password.html" style="color: rgb(55, 55, 98);">forgot password?</a></p>
+            <p>Don't have an account? <a id="signupLink" href="signup.html" style="color: rgb(55, 55, 98);">Sign Up</a></p>
+        </form>
+    </div>
+
+    
+
+    <script src="../src/script.js"></script>
+</body>
+</html>

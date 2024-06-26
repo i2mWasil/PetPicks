@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="../public/css/login.css">
+
+    <style>
+    /* General styling */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: scroll;
+            background-image: url(../public/images/loginbg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Centering the OTP verification box */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .otp-box {
+            background-color: rgba(173, 216, 230, 0.6); /* Semi-transparent bluish background */
+            padding: 40px; /* Increased padding */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* Increased max-width */
+            width: 100%;
+            text-align: center; /* Center align text */
+        }
+
+        /* Styling for the Verify OTP button */
+        #otpForm button {
+    background-color: #007bff; /* Bluish color */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px; /* Increased font size */
+    margin: 20px 0; /* Increased margin */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#otpForm button:hover {
+    background-color: #0056b3; /* Darker bluish color on hover */
+}
+
+
+        h1 {
+            font-size: 32px; /* Increased font size for the OTP Verification heading */
+            margin-top: 0; /* Remove default margin */
+        }
+
+/* Adjusting input field */
+#otpForm label {
+    display: inline-block;
+    text-align: left;
+    width: 30%; /* Set the width of the label */
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+#otpForm input[type="text"] {
+    width: calc(70% - 40px); /* Adjusted width to make the text box smaller and accommodate the margin */
+    padding: 12px;
+    margin: 8px 0 8px -50px; /* Reduced margin between label and input box */
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px; /* Increased font size */
+    display: inline-block; /* Ensure input field and label are on the same line */
+    vertical-align: middle; /* Align input field vertically with label */
+}
+
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="otp-box">
+            <h1>OTP Verification</h1>
+            <br>
+            <form id="otpForm" action="/verify-otp" method="POST">
+                <label for="otp">Enter OTP:</label>
+                <input type="hidden" id="email" name="email"> <!-- Hidden field to store email -->
+                <input type="text" id="otp" name="otp" required><br><br>
+                <button type="submit">Verify OTP</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Extract email from URL query parameters and populate email input field
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        document.getElementById('email').value = email;
+    </script>
+
+<script src="../src/script.js"></script>
+
+</body>
+</html>

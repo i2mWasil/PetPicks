@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPicks</title>
+    <link rel="icon" href="../public/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/style.css">
+
+
+    <style>
+        .upload {
+            top: -250px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.upload-form {
+    top: 150px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.upload-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="number"],
+.upload-form select,
+.upload-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.upload-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.upload-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.upload-form input[type="file"] {
+    margin-bottom: 20px;
+}
+
+.upload-form textarea {
+    resize: vertical;
+}
+
+    </style>
+
+</head>
+<body id="index" >
+    <script src="https://kit.fontawesome.com/7dcdc12078.js" crossorigin="anonymous"></script>
+
+
+    <!--HEADER BAR-->
+    <!--Logo / Search / User-->
+    <header>
+        <div class="top-menu">
+            <div>
+                <img src="../public/images/logo.png" alt="logo" class="logo-icon">
+            </div>
+            <div class="petpicks">
+                <pre>𝑷𝒆𝒕</pre><pre style="color: rgb(255, 255, 255);">𝑷𝒊𝒄𝒌𝒔</pre>
+            </div>
+            <!-- <div class="search">
+                <form action="#">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search" name="search">
+                        <button class="search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div> -->
+            <div class="user">
+                <i><pre id="username-placeholder" style="color: white;">𝗨𝘀𝗲𝗿</pre></i><!--username-placeholder change kiya-->
+            </div>
+            <div class="dropdown">  
+                <button id="profile-button" class="user-icon-btn">
+                    <img id="profile-image" src="" alt="Profile">
+                    
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+   
+
+
+    <!--Navigation bar-->
+    <!--Home / Categories / Post / Inbox / Messages-->
+    <div class="nav-container" id="navContainer">
+        <div class="nav-menu">
+            <div class="categories">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div id="upload-btn" class="upload-btn"> <!--nav-semicircle-->
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="log-out">
+                <button>
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--TRENDING PAGE-->
+    <section class="trending-container" style="top:100px; background-image: url('../public/images/Group1.png');">
+        <div class="trending-wrapper">
+            <div class="trending-slide">
+            </div>
+            <div class="trending-nav">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+                <a href="#slide-4"></a>
+            </div>
+            
+        </div>
+        <div class="trending-pagination"></div>
+    </section>
+
+
+
+
+    
+    <section class="category-container" style="background-image: url('../public/images/Group2.png');">
+        <div class="category-wrap">
+            <img src="../public/images/btn.png" id="backBtn">
+            <div class="category">
+                <div>
+                    <a href="../template/dogs.html"><img src="../public/images/category-dog.jpg" alt="dog"></a>
+                    <a href="../template/cats.html"><img src="../public/images/category-cat.jpg" alt="cat"></a>
+                    <a href="../template/rabbits.html"><img src="../public/images/cateogry-rabbit.jpg" alt="rabbit"></a>
+                </div>
+                <div>
+                    <a href="../template/birds.html"><img src="../public/images/category-bird.jpg" alt="bird"></a>
+                    <a href="../template/fishs.html"><img src="../public/images/category-fish.jpg" alt="fish"></a>
+                    <a href="../template/exotics.html"><img src="../public/images/cateogry-exotic.jpg" alt="exotic"></a>
+                </div>
+            </div>
+            <img src="../public/images/btn.png" id="frontBtn">
+        </div>   
+    </section>
+    
+
+    
+
+<div id="upload" class="upload">
+    <form action="/upload-item" method="POST" enctype="multipart/form-data" class="upload-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" min="0" step="0.01" required><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="fish">Fishes</option>
+            <option value="exotic">Exotic</option> 
+        </select><br>
+    
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4"></textarea><br>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required><br>
+
+       <button type="submit">Upload</button>
+        
+    </form>
+</div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    Promise.all([fetchUserData()])
+        .then(([userData]) => {
+            // Update username
+            if (userData && userData.username) {
+                document.getElementById('username-placeholder').textContent = userData.username;
+            }
+            // Update profile image
+            if (userData && userData.profileImage) {
+                document.getElementById('profile-image').src = userData.profileImage;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error.message);
+        });
+});
+
+async function fetchUserData() {
+    try {
+        const response = await fetch('/getUserData');
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data. Status: ' + response.status);
+        }
+        return await response.json();
+    } catch (error) {
+        throw new Error('Error fetching user data: ' + error.message);
+    }
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // Fetch trending images from the server
+        const response = await fetch('/trendingimages');
+        const imageUrls = await response.json();
+
+        // Get the container for trending slides
+        const slideContainer = document.querySelector('.trending-slide');
+
+        // Populate the trending slide container with images
+        imageUrls.forEach(({ imageUrl, itemId }, index) => {
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = `Trending ${index + 1}`;
+            img.id = `slide-${index + 1}`;
+            img.dataset.itemId = itemId; // Set the dataset attribute for itemId
+            img.addEventListener('click', async () => {
+                const itemId = img.dataset.itemId; // Retrieve itemId from dataset
+                console.log('Clicked item ID:', itemId);
+                await incrementClickCounter(itemId);
+                try {
+                        // Fetch details of the selected item from the server
+                        const response = await fetch(`/shoppingitems/${itemId}`);
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch item details');
+                        }
+                        // Redirect to the details page after fetching item details
+                        window.location.href = `../template/details.html?id=${itemId}`;
+                } catch (error) {
+                    console.error('Error fetching item details:', error);
+                }
+            });
+            slideContainer.appendChild(img);
+        });
+
+        // Get the navigation links for each slide
+        const slideLinks = document.querySelectorAll('.slide-link');
+
+        // Add click event listeners to each slide link to scroll to the corresponding slide
+        slideLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const slideNumber = parseInt(link.getAttribute('data-slide'));
+                const slideId = `slide-${slideNumber}`;
+                const slideElement = document.getElementById(slideId);
+                slideElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+    } catch (error) {
+        console.error('Error fetching trending images:', error);
+    }
+});
+
+
+
+// Function to increment the click counter for an item
+async function incrementClickCounter(itemId) {
+    try {
+        const response = await fetch(`/incrementclicks/${itemId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            console.log('Click counter incremented successfully');
+        } else {
+            console.error('Failed to increment click counter');
+        }
+    } catch (error) {
+        console.error('Error incrementing click counter:', error.message);
+    }
+}
+
+
+
+
+
+    </script>
+
+<script src="../src/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

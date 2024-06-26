@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Details</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('../public/images/loginbg.png');
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #itemDetails {
+            max-width: 400px;
+            max-height: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        #itemDetails form {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        #itemDetails form input[type="file"] {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        #itemDetails form button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #itemDetails form button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+
+
+        /* Resetting default form styles */
+        form {
+            margin: 150px;
+            border-top: 400px;
+            padding: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <header>
+        <div class="top-menu">
+            <div>
+                <img src="../public/images/logo.png" alt="logo" class="logo-icon">
+            </div>
+            <div class="petpicks">
+                <pre>𝑷𝒆𝒕</pre><pre style="color: rgb(255, 255, 255);">𝑷𝒊𝒄𝒌𝒔</pre>
+            </div>
+            <div class="user">
+                <i><pre id="username-placeholder" style="color: white;">𝗨𝘀𝗲𝗿</pre></i><!--username-placeholder change kiya-->
+            </div>
+            <div class="dropdown">  
+                <button id="profile-button" class="user-icon-btn">
+                    <img id="profile-image" src="" alt="Profile">
+                
+                    
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+
+
+    <h1 style="color: #cecece;">Pet Details</h1>
+    <div id="itemDetails">
+        
+    </div>
+
+
+    <div style="margin: 100px;">
+        <form action="/confirmpayment" method="post">
+            <input type="hidden" id="itemId" name="itemId">
+            <label for="confirmpayment">Payment Receipt:</label>
+            <input type="file" id="confirmpayment" name="confirmpayment" accept="image/*" required><br><br>
+            <button type="submit">Confirm Payment</button>
+        </form>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get('id');
+
+        // Fetch details of the selected item from the server
+        const response = await fetch(`/shoppingitems/${itemId}`);
+        const itemDetails = await response.json();
+
+        // Display item details on the details page
+        const itemDetailsContainer = document.getElementById('itemDetails');
+
+
+
+        const itemImage = document.createElement('img');
+        itemImage.src = itemDetails.imageUrl;
+        itemImage.alt = itemDetails.name;
+        itemDetailsContainer.appendChild(itemImage);
+
+        // Add other item details (name, price, category, description, etc.) as needed
+        // Example:
+        const itemName = document.createElement('h2');
+        itemName.textContent = itemDetails.name;
+        itemDetailsContainer.appendChild(itemName);
+
+        const itemPrice = document.createElement('p');
+        itemPrice.textContent = `Price: $${itemDetails.price}`;
+        itemDetailsContainer.appendChild(itemPrice);
+
+        const itemDescription = document.createElement('p');
+        itemPrice.textContent = `Price: $${itemDetails.price}`;
+        itemDetailsContainer.appendChild(itemDescription);
+
+
+
+        const itemQR = document.createElement('img');
+        itemQR.src = itemDetails.upiQR;
+        itemQR.alt = itemDetails.name;
+        itemDetailsContainer.appendChild(itemQR);
+
+
+        // Set the value of the hidden input field to the item ID
+        document.getElementById('itemId').value = itemId;
+        
+    } catch (error) {
+        console.error('Error fetching and displaying item details:', error);
+    }
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    Promise.all([fetchUserData()])
+        .then(([userData]) => {
+            // Update username
+            if (userData && userData.username) {
+                document.getElementById('username-placeholder').textContent = userData.username;
+            }
+            // Update profile image
+            if (userData && userData.profileImage) {
+                document.getElementById('profile-image').src = userData.profileImage;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error.message);
+        });
+});
+
+async function fetchUserData() {
+    try {
+        const response = await fetch('/getUserData');
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data. Status: ' + response.status);
+        }
+        return await response.json();
+    } catch (error) {
+        throw new Error('Error fetching user data: ' + error.message);
+    }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        // Get the logo icon element
+        var logoIcon = document.querySelector('.logo-icon');
+
+        // Add click event listener to the logo icon
+        logoIcon.addEventListener('click', function () {
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        });
+    });
+
+
+
+    </script>
+</body>
+</html>

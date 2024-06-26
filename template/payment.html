@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPicks - Rabbits</title>
+    <link rel="icon" href="../public/images/logo-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/shopping.css">
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/7dcdc12078.js" crossorigin="anonymous"></script>
+
+    <!--HEADER BAR-->
+    <!--Logo / Search / User-->
+    <header>
+        <div class="top-menu">
+            <div class="logo-icon">
+                <img src="../public/images/logo.png" alt="logo">
+            </div>
+            <div class="petpicks">
+                <pre>𝑷𝒆𝒕</pre><pre style="color: rgb(255, 255, 255);">𝑷𝒊𝒄𝒌𝒔</pre>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <br><br><br>
+    <div class="sub-heading">
+        <h1>Payment</h1>
+    </div>
+    <br><br><br><br><br>
+    
+    <div style="margin: 100px;">
+        <form action="/confirmpayment" method="post">
+            <label for="confirmpayment">Image:</label>
+            <input type="file" id="confirmpayment" name="confirmpayment" accept="image/*" required><br><br>
+            <button type="submit">Confirm Payment</button>
+        </form>
+        
+    </div>
+
+
+    <script>
+        // Parse the URL to extract query parameters
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+// Get the userId from the query parameters
+const userId = urlParams.get('userId');
+
+// Now you can use the userId as needed
+console.log('User ID:', userId);
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        // Get the logo icon element
+        var logoIcon = document.querySelector('.logo-icon');
+
+        // Add click event listener to the logo icon
+        logoIcon.addEventListener('click', function () {
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        });
+    });
+
+
+
+
+  
+
+
+//NAVIGATION BAR
+// Function to show or hide the navigation bar
+function toggleNavBar(event) {
+    const navBar = document.getElementById('navContainer');
+    const screenHeight = window.innerHeight;
+    const cursorY = event.clientY;
+    const distanceFromBottom = screenHeight - cursorY;
+    // If cursor is close to the bottom of the screen, show the navigation bar
+    if (distanceFromBottom < 50) {
+        navBar.style.transform = 'translateY(0)';
+        document.body.style.overflowY = 'visible'; // Show vertical scrollbar
+    } else {
+        navBar.style.transform = 'translateY(100%)';
+    }
+}
+// Add mousemove event listener to track cursor position and toggle navigation bar visibility
+document.addEventListener('mousemove', toggleNavBar);
+// Ensure that the mousemove event listener is always active
+document.body.style.overflowY = 'visible';
+
+
+
+
+  
+
+
+    </script>
+   
+
+
+
+
+
+
+</body>
+</html>
